@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    /* Custom styles */
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .hero-section {
+        background-color: darkkhaki;
+        
+        background-size: cover;
+        color: #fff;
+        text-align: center;
+        padding: 100px 0;
+    }
+
+    .featured-books {
+        padding: 50px 0;
+    }
+
+    .book-item {
+        text-align: center;
+    }
+</style>
+
+
+     @{
+    Book First = Model.Skip(0).FirstOrDefault();
+    Book Second = Model.Skip(1).FirstOrDefault();
+    Book Third = Model.Skip(2).FirstOrDefault();
+      }
+
+      <h1>@TempData["message"]</h1>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Welcome to Our Book Store</h1>
+            <p>Discover your next great read with us!</p>
+        </div>
+    </section>
+
+    <!-- Featured Books Section -->
+    <section class="featured-books">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Books</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="book-item">
+                    <img src="data:image/jpg;base64,@First.Image" width="120px" height="120px" alt="Book 1">
+                        <h4>@First.Title</h4>
+                        <p>@First.Author</p>
+                        <a asp-controller="Books" asp-action="Details" asp-route-id="@First.Id" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="book-item">
+                    <img src="data:image/jpg;base64,@Second.Image" width="120px" height="120px" alt="Book 1">
+                        <h4>@Second.Title</h4>
+                         <p>@Second.Author</p>
+                    <a asp-controller="Books" asp-action="Details" asp-route-id="@Second.Id" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="book-item">
+                    <img src="data:image/jpg;base64,@Third.Image" width="120px" height="120px" alt="Book 1">
+                        <h4>@Third.Title</h4>
+                        <p>@Third.Author</p>
+                    <a asp-controller="Books" asp-action="Details" asp-route-id="@Third.Id" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
